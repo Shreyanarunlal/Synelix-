@@ -22,3 +22,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+# Spring Boot / Maven
+backend/target/
+backend/.idea/
+backend/*.iml
+
+# Environment / secrets
+backend/src/main/resources/application-local.properties
+.env
+.env.*
