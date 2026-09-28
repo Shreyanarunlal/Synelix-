@@ -1,0 +1,106 @@
+{
+  "dataset_rows": 9000,
+  "placement_rate": 0.7308,
+  "placement_classifier": {
+    "accuracy": 0.78,
+    "roc_auc": 0.7983,
+    "brier_score": 0.1527,
+    "report": {
+      "not placed": {
+        "precision": 0.6583629893238434,
+        "recall": 0.38144329896907214,
+        "f1-score": 0.4830287206266319,
+        "support": 485.0
+      },
+      "placed": {
+        "precision": 0.8025016458196181,
+        "recall": 0.9269961977186312,
+        "f1-score": 0.8602681721947777,
+        "support": 1315.0
+      },
+      "accuracy": 0.78,
+      "macro avg": {
+        "precision": 0.7304323175717308,
+        "recall": 0.6542197483438517,
+        "f1-score": 0.6716484464107048,
+        "support": 1800.0
+      },
+      "weighted avg": {
+        "precision": 0.7636642855971455,
+        "recall": 0.78,
+        "f1-score": 0.7586230977444718,
+        "support": 1800.0
+      }
+    }
+  },
+  "ctc_regressor": {
+    "mae_lpa": 1.434,
+    "rmse_lpa": 2.196,
+    "r2": 0.8484,
+    "train_rows": 5261
+  },
+  "factor_weights": {
+    "Academic CGPA": 0.2862,
+    "Coding & DSA": 0.2167,
+    "Aptitude & Logic": 0.2029,
+    "Communication": 0.135,
+    "Projects & Proof of Work": 0.1218,
+    "Internship Experience": 0.0352,
+    "Certifications": 0.0022
+  },
+  "feature_importances": {
+    "cgpa": 0.14858,
+    "dsa_solved": 0.21492,
+    "aptitude_score": 0.20125,
+    "projects_count": 0.08698,
+    "internships_months": 0.03491,
+    "certifications_count": 0.00223,
+    "hackathons_won": 0.03379,
+    "communication_score": 0.13393,
+    "backlogs": 0.13524,
+    "department": 0.00816
+  },
+  "cohort_profiles": {
+    "0": {
+      "name": "Interview-Ready Allrounder",
+      "focus": "shipping verifiable projects with a live deployment",
+      "weakest_axis": "projects_count",
+      "size": 1423,
+      "avg_cgpa": 8.56,
+      "avg_dsa_solved": 290.6,
+      "avg_aptitude": 84.7,
+      "placement_rate": 0.975
+    },
+    "3": {
+      "name": "Near-Ready, One Gap",
+      "focus": "converting an internship or open-source stint into experience",
+      "weakest_axis": "internships_months",
+      "size": 3551,
+      "avg_cgpa": 7.6,
+      "avg_dsa_solved": 132.5,
+      "avg_aptitude": 72.2,
+      "placement_rate": 0.861
+    },
+    "2": {
+      "name": "Developing Profile",
+      "focus": "clearing the CGPA and backlog cut-offs that gate eligibility",
+      "weakest_axis": "cgpa",
+      "size": 2592,
+      "avg_cgpa": 6.5,
+      "avg_dsa_solved": 66.0,
+      "avg_aptitude": 56.5,
+      "placement_rate": 0.596
+    },
+    "1": {
+      "name": "Foundation Builder",
+      "focus": "clearing the CGPA and backlog cut-offs that gate eligibility",
+      "weakest_axis": "cgpa",
+      "size": 1434,
+      "avg_cgpa": 6.34,
+      "avg_dsa_solved": 57.4,
+      "avg_aptitude": 54.4,
+      "placement_rate": 0.409
+    }
+  },
+  "jobs_indexed": 12
+}

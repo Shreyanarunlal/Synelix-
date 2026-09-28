@@ -1,18 +1,18 @@
 package synelix_backend.controller;
 
 import jakarta.validation.Valid;
-
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-
+import synelix_backend.dto.AuthResponse;
 import synelix_backend.dto.LoginRequest;
 import synelix_backend.dto.RegisterRequest;
-import synelix_backend.entity.User;
 import synelix_backend.service.AuthService;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "http://localhost:5173")
 public class AuthController {
 
     private final AuthService authService;
@@ -22,38 +22,26 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(
-            @Valid @RequestBody RegisterRequest request) {
-
-        try {
-            User user = authService.register(request);
-
-            return ResponseEntity.ok(
-                    "User registered successfully with ID: "
-                            + user.getId()
-            );
-
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest()
-                    .body(e.getMessage());
-        }
+    public ResponseEntity<AuthResponse> register(@Valid @RequestBody RegisterRequest request) {
+        return ResponseEntity.ok(authService.register(request));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(
-            @Valid @RequestBody LoginRequest request) {
+    public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest request) {
+        return ResponseEntity.ok(authService.login(request));
+    }
 
-        try {
-            User user = authService.login(request);
-
-            return ResponseEntity.ok(
-                    "Login successful for "
-                            + user.getName()
-            );
-
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(401)
-                    .body(e.getMessage());
+    /** Lets the SPA confirm a stored token is still valid on page load. */
+    @GetMapping("/me")
+    public ResponseEntity<Map<String, Object>> me(Authentication authentication) {
+        if (authentication == null) {
+            return ResponseEntity.status(401).body(Map.of(
+                    "authenticated", false,
+                    "message", "No valid session"));
         }
+        return ResponseEntity.ok(Map.of(
+                "authenticated", true,
+                "email", authentication.getName(),
+                "authorities", authentication.getAuthorities().toString()));
     }
 }
